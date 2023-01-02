@@ -1,0 +1,18 @@
+Logic:
+Add up the values of the cards
+Display value?
+Face Cards are worth 10
+Aces are 1 or 11
+Numbered cards are 2-10
+Highest value wins
+Compare player to dealer values
+Player can hit or stay
+Face Down card is assumed to be 10
+Dealer value is the face up card plus 10
+An ace and something worth 10 is an automatic blackjack
+If your value is over 21 then you bust.
+Once the player has finished playing, the face down card is flipped.
+Dealer stands on 17 and hits on 16 or lower.
+Splitting pairs: Any pair can be turned into 2 separate hands and you will be required to re-bet on the second hand.
+Doubling down: If the original 2 cards are a sum of 9,10,11. You can double your bet, get one face down card.
+If the player busts, the dealer does not have to continue
