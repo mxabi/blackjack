@@ -33,7 +33,7 @@ public class Game {
         deck = new Deck(suits, ranks);
 
 
-        cardValues.put(ACE, 11);   //TODO in order to have it be 1 or 11 we need to add 10 to the value if the total card value is <= 10
+        cardValues.put(ACE, 11);
         cardValues.put(TWO, 2);
         cardValues.put(THREE, 3);
         cardValues.put(FOUR, 4);
