@@ -9,7 +9,7 @@ public class Main {
         Blackjack blackjack = new Blackjack();
         Player player = new Player(100);
 
-        boolean gameOn = blackjack.playGame(false);
+        boolean gameOn = blackjack.playGame(false, player);
 
         Deck deck = blackjack.getDeck();
         deck.shuffleDeck();
@@ -17,55 +17,25 @@ public class Main {
         //TODO: Running out of cards?
 
         while (gameOn) {
+            int bet = blackjack.makeBet(player);
             List<List<Card>> initialList = blackjack.initialDeal(deck);
-            blackjack.playerLoop(initialList,deck);
+            boolean playerBust = blackjack.playerLoop(initialList, deck, true, player);
+            boolean dealerBust = blackjack.dealerLoop(initialList, deck, true, player, bet);
+            int dealerValue = blackjack.getDealerValue();
+            int playerValue = blackjack.getPlayerValue();
 
-            //TODO: Dealer Loop
 
-            int dealerValue = 0;
+            blackjack.winLossCheck(playerBust, dealerBust, playerValue, dealerValue, player, bet);
 
-            while (dealerHit) {
-                System.out.println("Dealer:");
 
-                for (Card card : dealerCards) {
-                    System.out.println(Game.getRank(card.getRank()) + " " + Game.getSuit(card.getSuit()));
-                }
-                ;
-
-                dealerValue = 0;
-                for (Card card : dealerCards) {
-                    dealerValue += cardValues.get(card.getRank());
-                }
-                System.out.println("Dealer Value: " + dealerValue);
-
-                if (dealerValue < 17) {
-                    List<Card> newCard = deck.dealCards(1);
-                    Card hit = newCard.remove(0);
-                    System.out.println(Game.getRank(hit.getRank()) + " " + Game.getSuit(hit.getSuit()));
-                    dealerCards.add(hit);
-                }
-                else if (dealerValue > 21) {
-                    System.out.println(dealerValue + ": Dealer busts, you win!");
-                    dealerBust = true;
-                    break;
-                }else {
-                    dealerHit = false;
-                }
+            gameOn = blackjack.playGame(gameOn, player);
+            int deckCount = deck.getListOfCards().size();
+            if (deckCount <= 26){
+                Game game = new Game();
+                deck = game.getDeck();
+                deck.shuffleDeck();
             }
-            //TODO: Win-loss check
-
-            if (!playerBust && !dealerBust) {
-                if (dealerValue > playerValue) {
-                    System.out.println(dealerValue + " is higher than " + playerValue + ". You lose!");
-                } else if (playerValue > dealerValue) {
-                    System.out.println(playerValue + " is higher than " + dealerValue + ". You win!");
-                } else {
-                    System.out.println(playerValue + " is the same as " + dealerValue + ". You tie!");
-                }
-            }
-
-
-            gameOn = blackjack.playGame(false);
+         
 
         }
 

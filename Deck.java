@@ -14,7 +14,10 @@ public class Deck {
         }
     }
 
-    // TODO: Come back to shuffling function?
+    public List<Card> getListOfCards() {
+        return listOfCards;
+    }
+
     public void shuffleDeck() {
         Collections.shuffle(listOfCards);
     }

@@ -6,7 +6,7 @@ public class Game {
     private Deck deck;
     private Map<Integer, Integer> cardValues = new HashMap<>();
 
-    //TODO: Add chips in the future?
+
     public static final int NOTHING =0;
     public static final int SPADES = 1;
     public static final int DIAMONDS = 2;
